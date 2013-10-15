@@ -165,11 +165,11 @@ $| = 1;
 my ( $source_root, $target_root ) = @ARGV;
 
 showversion() if ( $Options{version} );
-showhelp()    if ( $Options{help} );
 showusage()
     if ( !defined $source_root
     or !defined $target_root
     or $Options{processes} < 1
+    or $Options{help}
     or $Options{usage} );
 
 if($Options{lameargs} && $Options{preset}){
@@ -179,7 +179,7 @@ if($Options{lameargs} && $Options{preset}){
 my @lameargs;
 
 if(!$Options{lameargs} && !$Options{preset}){
-    @lameargs = $DEFAULT_PRESET;
+    @lameargs = @{$DEFAULT_PRESET};
 }
 elsif($Options{lameargs}){
     @lameargs = $Options{lameargs};
